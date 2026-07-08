@@ -46,7 +46,9 @@ When writing public-facing RuyiDify blogs:
 - Use `D:\notes\RuyiWriter` as the writing repository and follow its `AGENTS.md` plus `docs/知识库/`.
 - Treat `作品\博客\2026年\7月\001_我重新看了一遍Dify，决定把RuyiDify做成一门实战课.md` as the current reference sample.
 - Write from Zhang Dapeng's first-person perspective as a real expert project story.
-- Use more Markdown lists when they improve scanning; every public blog list item should start with a suitable emoji or clear symbol.
+- Blogs are plain-text by default. Do not insert images unless the user explicitly asks for an illustrated post.
+- Use Markdown lists when they improve scanning. Every public blog list item should start with a suitable, meaningful emoji.
+- Avoid meaningless repeated emoji and decorative double bullets such as `- 🟣 ...`.
 - Do not expose local absolute paths in published article bodies. Use GitHub/network URLs, public repository names, or reader-facing descriptions instead.
 - Do not commit, push, create pull requests, or publish writing changes unless the user explicitly asks for that action in the current task.
 
