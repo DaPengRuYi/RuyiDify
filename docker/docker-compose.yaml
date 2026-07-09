@@ -374,6 +374,12 @@ services:
   web:
     image: langgenius/dify-web:1.15.0
     restart: always
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        find /app/targets/next/web/.next/server/chunks/ssr -type f -name '*.js' -exec sed -i 's#http://localhost#http://api:5001#g' {} + 2>/dev/null || true
+        exec /bin/sh /app/entrypoint.sh
     env_file:
       - path: ./envs/core-services/web.env
         required: false
@@ -1019,8 +1025,8 @@ services:
       - etcd
       - minio
     ports:
-      - 19530:19530
-      - 9091:9091
+      - ${MILVUS_STANDALONE_PORT:-19530}:19530
+      - ${MILVUS_STANDALONE_METRICS_PORT:-9091}:9091
     networks:
       - milvus
 
@@ -1044,6 +1050,8 @@ services:
         hard: ${OPENSEARCH_NOFILE_HARD:-65536}
     volumes:
       - ./volumes/opensearch/data:/usr/share/opensearch/data
+    ports:
+      - ${OPENSEARCH_PORT:-9200}:9200
     networks:
       - opensearch-net
 
@@ -1056,6 +1064,8 @@ services:
       OPENSEARCH_HOSTS: '["https://opensearch:9200"]'
     volumes:
       - ./volumes/opensearch/opensearch_dashboards.yml:/usr/share/opensearch-dashboards/config/opensearch_dashboards.yml
+    ports:
+      - ${OPENSEARCH_DASHBOARDS_PORT:-5601}:5601
     networks:
       - opensearch-net
     depends_on:

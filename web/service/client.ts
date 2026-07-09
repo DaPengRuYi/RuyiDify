@@ -46,9 +46,13 @@ function isURL(path: string) {
 }
 
 export function getBaseURL(path: string) {
-  const url = new URL(path, isURL(path) ? undefined : isClient ? window.location.origin : 'http://localhost')
+  const serverConsoleApiUrl = process.env.SERVER_CONSOLE_API_URL
+  const serverPath = !isClient && !isURL(path) && serverConsoleApiUrl
+    ? `${serverConsoleApiUrl.replace(/\/$/, '')}${path.startsWith('/') ? path : `/${path}`}`
+    : path
+  const url = new URL(serverPath, isURL(serverPath) ? undefined : isClient ? window.location.origin : 'http://localhost')
 
-  if (!isClient && !isURL(path)) {
+  if (!isClient && !isURL(serverPath)) {
     console.warn('Using localhost as base URL in server environment, please configure accordingly.')
   }
 

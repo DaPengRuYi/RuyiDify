@@ -43,8 +43,8 @@ The codebase is split into:
 
 When writing public-facing RuyiDify blogs:
 
-- Use `D:\notes\RuyiWriter` as the writing repository and follow its `AGENTS.md` plus `docs/知识库/`.
-- Treat `作品\博客\2026年\7月\001_我重新看了一遍Dify，决定把RuyiDify做成一门实战课.md` as the current reference sample.
+- Write finished posts under `docs\博客\` in this repository. Do not split blog posts by year or month.
+- Treat `docs\博客\001_我重新看了一遍Dify，决定把RuyiDify做成一门实战课.md` as the current reference sample.
 - Write from Zhang Dapeng's first-person perspective as a real expert project story.
 - Blogs are plain-text by default. Do not insert images unless the user explicitly asks for an illustrated post.
 - Use Markdown lists when they improve scanning. Every public blog list item should start with a suitable, meaningful emoji.
